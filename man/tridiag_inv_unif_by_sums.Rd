@@ -2,7 +2,7 @@
 % Please edit documentation in R/ICS_smoothing.R
 \name{tridiag_inv_unif_by_sums}
 \alias{tridiag_inv_unif_by_sums}
-\title{Construct inverse of a tridiagonal matrix M_n(a,b,a).}
+\title{Construct inverse of a tridiagonal matrix T_n(a,b,a).}
 \usage{
 tridiag_inv_unif_by_sums(n, a, b)
 }
@@ -14,10 +14,10 @@ tridiag_inv_unif_by_sums(n, a, b)
 \item{b}{a value of tridiagonal matrix diagonal elements.}
 }
 \value{
-The inverse of matrix \code{M}_{\code{n}}(\code{a},\code{b},\code{a}).
+The inverse of matrix \code{T}_{\code{n}}(\code{a},\code{b},\code{a}).
 }
 \description{
-\code{tridiag_inv_unif_by_sums} constructs inverse of a regular tridiagonal matrix \code{M}_{\code{n}}(\code{a},\code{b},\code{a})
+\code{tridiag_inv_unif_by_sums} constructs inverse of a regular tridiagonal matrix \code{T}_{\code{n}}(\code{a},\code{b},\code{a})
 with constant entries by a special algorithm using sums of matrix elements.
 }
 \examples{

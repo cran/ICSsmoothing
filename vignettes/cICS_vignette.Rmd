@@ -1,6 +1,6 @@
 ---
 title: "Explicit form of interpolating cubic spline and data smoothing"
-Authors: "Juraj Hudák, Viliam Kačala, Csaba Török"
+# Authors: "Juraj Hudák, Lubomir Antoni, Csaba Török"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -18,7 +18,7 @@ where
 
   $\hspace{5mm}\mathbf{S}$ is the vector of $k$ spline components,
 
-  $\hspace{5mm}\mathbf{B}$ is the $k\times (k+3)$ matrix of basis functions and
+  $\hspace{5mm}\mathbf{B}$ is the $k\times (k+3)$ matrix of bazis functions and
 
   $\hspace{5mm}\boldsymbol{\gamma}$ is the vector of $k+3$ spline coefficients.
 
@@ -30,9 +30,10 @@ Due to further two functions
 $\textit{cics_unif_explicit_smooth}$ and 
 $\textit{cics_explicit_smooth},$
 one can smooth scattered data points according to regression models based on the explicit interpolating form. 
-Their benefit is the simply and naturally interpretable vector of clamped spline coefficients $\boldsymbol{\gamma}$, which contains $k+1$ $y$-values on the spline curve and its two derivatives at the edges.
+Their benefit is the simply and naturally interpretable clamped spline coefficient $\boldsymbol{\gamma}$, which contains $k+1$ $y$-values on the spline curve and its two derivatives at the edges.
 
 ```{r message=FALSE}
+rm(list = ls())
 library(ICSsmoothing)
 ```
 
@@ -41,7 +42,7 @@ library(ICSsmoothing)
 * \( \mathbf{cics\_unif\_explicit(umin, umax, yy, d, ...)} \)
 
 
-Let $P=\{[-1,2],[0,3],[1,-2],[2,6]\}$, i.e. we are given equidistant nodes $(-1,0,1,2)^{\mathsf{T}}$ and values $(2,3,-2,6)^{\mathsf{T}}$. Let the derivatives in the first and the last node be $1$ and $4$. 
+Let $P=\{[-1,2],[0,3],[1,-2],[2,6]\}$, i.e. there be given equidistant nodes $(-1,0,1,2)^{\mathsf{T}}$ and values $(2,3,-2,6)^{\mathsf{T}}$. Let the derivatives in the first and the last node be $1$ and $4$. 
 The codelines
 ```{r fig.width=4, fig.height=3}
 yy <- c(2, 3, -2, 6)
@@ -50,7 +51,7 @@ clrs <- c("blue", "red")
 expl_spline <- cics_unif_explicit(-1, 2, yy, d, clrs)
 ```
 
-provide not only the plot of a uniform $\textit{CICS}$ $\mathbf{S}$ with 3 components, but from the list $expl\_spline$ one also get the building elements of the explicit form
+provide not only the plot of a uniform $\textit{CICS}$ $\mathbf{S}$ with 3 components, but from the list $expl\_spline$ one can get as well as the building elements of the explicit form
 $$\mathbf{S}=\mathbf{B}\cdot\boldsymbol{\gamma}.$$
 One can obtain the spline coefficients and the corresponding polynomial expressions of the cubic spline segments
 ```{r}
@@ -119,7 +120,7 @@ $~$
 * $\mathbf{cics\_unif\_explicit\_smooth(xx,yy,k, ...)}$
 
 The next codelines smooth a data set of 277 nuclear physics measurements of the cross sections for
-${\pi^{-}p}$ collision from the $CERN$ data frame with a $k$-component clamped cubic spline of class $C^2$ using  linear regression based on the above explicit interpolating spline form
+${\pi^{-}p}$ collision from the $CERN$ data frame with a $k0$-component clamped cubic spline of class $C^2$ using  linear regression based on the above explicit interpolating spline form
 ```{r fig.width=6, fig.height=4}
 sp <- cics_unif_explicit_smooth(
   xx = CERN$x,
@@ -135,7 +136,7 @@ It should be noted that the $d$ argument of the function can be used to control 
 
 We get e.g. the expression of the first spline segment as
 ```{r}
-sp$est_spline_polynomials[[1]]
+sp$est_spline_polynomials[1]
 ```
 
 ### Specified external derivatives and forecasting with uniform interpolating splines
@@ -198,7 +199,7 @@ sp <- cics_explicit_smooth(
 Below we provide three efficient ways to calculate the inversion of tridiagonal matrices.
 For computing the inverse of a general tridiagonal matrix in form
 \begin{align*}
-\mathbf{M}_n(\mathbf{a},\mathbf{b},\mathbf{c})=\begin{pmatrix}
+\mathbf{T}_n(\mathbf{a},\mathbf{b},\mathbf{c})=\begin{pmatrix}
 b_1 & c_1 & 0 &\dots & 0\\
 a_1 & b_2 & c_1 & \dots & 0\\
 0 & a_2 & b_3 & \ddots & 0\\
@@ -208,7 +209,7 @@ a_1 & b_2 & c_1 & \dots & 0\\
 \end{align*}
 the function $\mathbf{tridiag\_inv\_general}$ applyes Usmani's theorem:
 
-Let $\mathbf{M}=\mathbf{M}_n(\mathbf{a},\mathbf{b},\mathbf{c})\in \mathbb{R}^{n\times n}$, given by \eqref{tridiag}, be a regular tridiagonal matrix and let $\mathbf{M}^{-1}=(\tau_{i,j})_{n\times n}$. Then
+Let $\mathbf{T}=\mathbf{T}_n(\mathbf{a},\mathbf{b},\mathbf{c})\in \mathbb{R}^{n\times n}$, given by \eqref{tridiag}, be a regular tridiagonal matrix and let $\mathbf{T}^{-1}=(\tau_{i,j})_{n\times n}$. Then
 		\begin{align*}
 		\tau_{i,j}=\left\{
 		\begin{array}{lll}
@@ -230,7 +231,7 @@ $~$
 
 For computing the inverse of a tridiagonal matrix of form
 $$
-\mathbf{M}_{n}(a,b,a)=\begin{pmatrix}
+\mathbf{T}_{n}(a,b,a)=\begin{pmatrix}
 b & a & 0 &\dots & 0\\
 a & b & a & \dots & 0\\
 0 & a & b & \ddots & 0\\
@@ -242,7 +243,7 @@ the function $\mathbf{tridiag\_inv\_unif\_by\_sums}$
 uses the theorem by Usmani (T1), combined with our own theorem (T2).
 
 (T1)
-Let $\mathbf{M}=\mathbf{M}_{n}(a,b,a)\in \mathbb{R}^{n\times n}$ be a regular tridiagonal matrix, $\mathbf{M}^{-1}=(\tau_{i,j})_{n\times n}$. Then
+Let $\mathbf{T}=\mathbf{T}_{n}(a,b,a)\in \mathbb{R}^{n\times n}$ be a regular tridiagonal matrix, $\mathbf{T}^{-1}=(\tau_{i,j})_{n\times n}$. Then
 		\begin{align}
 		\tau_{i,j}=\left\{
 		\begin{array}{ll}
@@ -251,10 +252,10 @@ Let $\mathbf{M}=\mathbf{M}_{n}(a,b,a)\in \mathbb{R}^{n\times n}$ be a regular tr
 		\end{array}
 		\right.
 		\end{align}
-		for $D_{0}=1$ and $D_{k}=\mathrm{det}\mathbf{M}_{k}(a,b,a),\ k=1,2,\dots,n$.
+		for $D_{0}=1$ and $D_{k}=\mathrm{det}\mathbf{T}_{k}(a,b,c),\ k=1,2,\dots,n$.
 
 (T2)
-Let $\mathbf{M}=\mathbf{M}_{n}(a,b,a)\in \mathbb{R}^{n\times n},\ n\geq 3,$ be a regular matrix and let $\mathbf{M}^{-1}=(\tau_{i,j}^{(n)})_{n\times n}$. If $i\leq j<n$ and $n-i\leq j$, then
+Let $\mathbf{T}=\mathbf{T}_{n}(a,b,a)\in \mathbb{R}^{n\times n},\ n\geq 3,$ be a regular matrix and let $\mathbf{T}^{-1}=(\tau_{i,j}^{(n)})_{n\times n}$. If $i\leq j<n$ and $n-i\leq j$, then
 		\begin{align*}
 		\tau_{i,j}^{(n)}=\tau_{i+1,j+1}^{(n)}+\tau_{i-n+j,n}^{(n)}.
 		\end{align*}
@@ -272,7 +273,7 @@ s(x)&=y_{u}\frac{(x-v)^2}{(u-v)^2}\left(1-2\frac{x-u}{u-v}\right)+y_{v}\frac{(x-
 
 or by a matrix form:
 \begin{align*}
-s(x)=(1,x,x^2,x^3)\cdot \mathbf{H}(u,v)\cdot (y_u,y_{v},d_u,d_{v})^\mathsf{M},
+s(x)=(1,x,x^2,x^3)\cdot \mathbf{H}(u,v)\cdot (y_u,y_{v},d_u,d_{v})^\mathsf{T},
 \end{align*} where
 \begin{align*}
 \mathbf{H}(u,v)=\frac{1}{(v-u)^3}\begin{pmatrix}

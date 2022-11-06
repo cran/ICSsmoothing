@@ -48,15 +48,15 @@ library(ggplot2)
   return(Inv)
 }
 
-#' Construct inverse of a tridiagonal matrix M_n(a,b,a).
+#' Construct inverse of a tridiagonal matrix T_n(a,b,a).
 #'
-#' \code{tridiag_inv_unif_by_sums} constructs inverse of a regular tridiagonal matrix \code{M}_{\code{n}}(\code{a},\code{b},\code{a})
+#' \code{tridiag_inv_unif_by_sums} constructs inverse of a regular tridiagonal matrix \code{T}_{\code{n}}(\code{a},\code{b},\code{a})
 #' with constant entries by a special algorithm using sums of matrix elements.
 #'
 #' @param n an order of given tridiagonal matrix.
 #' @param a a value of tridiagonal matrix elements that are off-diagonal.
 #' @param b a value of tridiagonal matrix diagonal elements.
-#' @return The inverse of matrix \code{M}_{\code{n}}(\code{a},\code{b},\code{a}).
+#' @return The inverse of matrix \code{T}_{\code{n}}(\code{a},\code{b},\code{a}).
 #' @examples
 #' tridiag_inv_unif_by_sums(5, 1, 4)
 #' tridiag_inv_unif_by_sums(9, 10, -1)
@@ -79,39 +79,39 @@ tridiag_inv_unif_by_sums <- function(n, a, b) {
 
 #' Construct inverse of a general tridiagonal matrix.
 #'
-#' \code{tridiag_inv_general} constructs inverse of a general tridiagonal matrix \code{M} of order \code{n},
+#' \code{tridiag_inv_general} constructs inverse of a general tridiagonal matrix \code{T} of order \code{n},
 #' using Usmani's theorem.
 #'
-#' @param M a tridiagonal matrix.
+#' @param T a tridiagonal matrix.
 #' @param n an order of given tridiagonal matrix.
-#' @return The inverse of matrix M.
+#' @return The inverse of matrix T.
 #' @examples
 #' tridiag_inv_general(matrix(c(1, 4, 0, -9), 2, 2), 2)
 #' tridiag_inv_general(matrix(c(1, 3, 5, -2, 0, 8, 7, 6, 6), 3, 3), 3)
 #' @export
-tridiag_inv_general <- function(M, n) {
-  if (!is.matrix(M)) {
-    stop("M is not a matrix!")
+tridiag_inv_general <- function(T, n) {
+  if (!is.matrix(T)) {
+    stop("T is not a matrix!")
   }
   if (n == 1) {
-    return(matrix((1 / M[1, 1]), 1, 1))
+    return(matrix((1 / T[1, 1]), 1, 1))
   }
   if (n %% 1 != 0 || n <= 0) {
     stop("n is not a positive integer!")
   }
-  if (det(M) == 0) {
-    stop("Matrix M is not invertible!")
+  if (det(T) == 0) {
+    stop("Matrix T is not invertible!")
   }
 
   a <- rep(0, n - 1)
   b <- rep(0, n)
   c <- rep(0, n - 1)
   for (i in 1:(n - 1)) {
-    b[i] <- M[i, i]
-    c[i] <- M[i, i + 1]
-    a[i] <- M[i + 1, i]
+    b[i] <- T[i, i]
+    c[i] <- T[i, i + 1]
+    a[i] <- T[i + 1, i]
   }
-  b[n] <- M[n, n]
+  b[n] <- T[n, n]
 
   theta <- rep(0, n + 1)
   phi <- rep(0, n + 1)
@@ -442,7 +442,9 @@ cics_unif_explicit <-
     MT <- t(M)
     XX <- MT %*% M
     XY <- MT %*% yy
-    est_gam <- t(solve(XX)) %*% XY
+    ##est_gam <- t(solve(XX)) %*% XY
+    #est_gam <- t(solve(XX, XY))
+    est_gam <- qr.solve(M, yy)
   } else {
     if (length(d) != 2) {
       stop("d isn't a numeric vector of length 2.")
@@ -453,7 +455,9 @@ cics_unif_explicit <-
     M1T <- t(M1)
     XX1 <- M1T %*% M1
     XY1 <- M1T %*% yy_new
-    est_gam_fv <- t(solve(XX1)) %*% XY1
+    ##est_gam_fv <- t(solve(XX1)) %*% XY1
+    #est_gam_fv <- t(solve(XX1, XY1))
+    est_gam_fv <- qr.solve(M1, yy_new)
     est_gam <- c(est_gam_fv, d)
   }
   return(est_gam)
@@ -508,7 +512,7 @@ cics_unif_explicit_smooth <-
            xlab = NULL,
            ylab = NULL,
            title = NULL,
-           plotTF = TRUE) {
+           plotTF=TRUE) {
     if (is.unsorted(xx)) {
       stop("x-coordinates of measurements are not in increasing order!")
     }
@@ -584,16 +588,16 @@ cics_unif_explicit_smooth <-
 
 .nonuniform_tridiagonal_inverse_matrix <- function(n, hh) {
   i <- NULL
-  M <- matrix(0, n, n)
+  T <- matrix(0, n, n)
   if (n > 1) {
     for (i in 1:(n - 1)) {
-      M[i, i] <- (2 / hh[i]) + (2 / hh[i + 1])
-      M[i, i + 1] <- (1 / hh[i + 1])
-      M[i + 1, i] <- (1 / hh[i + 1])
+      T[i, i] <- (2 / hh[i]) + (2 / hh[i + 1])
+      T[i, i + 1] <- (1 / hh[i + 1])
+      T[i + 1, i] <- (1 / hh[i + 1])
     }
   }
-  M[n, n] <- (2 / hh[n]) + (2 / hh[n + 1])
-  Tau <- tridiag_inv_general(M, n)
+  T[n, n] <- (2 / hh[n]) + (2 / hh[n + 1])
+  Tau <- tridiag_inv_general(T, n)
   return (Tau)
 }
 

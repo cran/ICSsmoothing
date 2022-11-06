@@ -6,7 +6,9 @@
 \title{277 measurements of the cross sections for
 \eqn{\pi^{-}p} collision (nuclear
 physics).}
-\format{A data frame with 277 elements.}
+\format{
+A data frame with 277 elements.
+}
 \source{
 \url{https://link.springer.com/article/10.1007/BF02683433}
 }

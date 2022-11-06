@@ -1,4 +1,5 @@
 ## ----message=FALSE------------------------------------------------------------
+rm(list = ls())
 library(ICSsmoothing)
 
 ## ----fig.width=4, fig.height=3------------------------------------------------
@@ -36,7 +37,7 @@ sp <- cics_unif_explicit_smooth(
 
 
 ## -----------------------------------------------------------------------------
-sp$est_spline_polynomials[[1]]
+sp$est_spline_polynomials[1]
 
 ## ----fig.width=6, fig.height=4------------------------------------------------
 yy <- as.vector( log10(AirPassengers) )

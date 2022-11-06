@@ -4,18 +4,18 @@
 \alias{tridiag_inv_general}
 \title{Construct inverse of a general tridiagonal matrix.}
 \usage{
-tridiag_inv_general(M, n)
+tridiag_inv_general(T, n)
 }
 \arguments{
-\item{M}{a tridiagonal matrix.}
+\item{T}{a tridiagonal matrix.}
 
 \item{n}{an order of given tridiagonal matrix.}
 }
 \value{
-The inverse of matrix M.
+The inverse of matrix T.
 }
 \description{
-\code{tridiag_inv_general} constructs inverse of a general tridiagonal matrix \code{M} of order \code{n},
+\code{tridiag_inv_general} constructs inverse of a general tridiagonal matrix \code{T} of order \code{n},
 using Usmani's theorem.
 }
 \examples{
