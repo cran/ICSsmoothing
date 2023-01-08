@@ -72,7 +72,7 @@ Building from source
 --------------------
 
 ###  Prerequisites
-* [Rtools](https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites)
+* [Rtools](https://support.posit.co/hc/en-us/articles/200486498-Package-Development-Prerequisites/)
 * LaTeX
 
 ### Depends on R packages
@@ -105,7 +105,7 @@ library(ggplot2)
 Open system terminal in the parent directory of the package and type
 ```bash
 R CMD build ICSsmoothing
-R CMD install ICSsmoothing_1.1.0.tar.gz
+R CMD install ICSsmoothing_1.2.7.tar.gz
 ```
 **OR**
 Open RStudio and install this library using top menu button *Build*->*Install and Restart*.

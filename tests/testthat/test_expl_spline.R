@@ -38,11 +38,11 @@ test_that("cics_unif_explicit works correctly.", {
   ext_d <- c(as.function(deriv(exp_sp$spline_polynomial[[1]]))(uu[1]),
     as.function(deriv(exp_sp$spline_polynomial[[n + 1]]))(uu[length(uu)]))
 
-  tf1 <- all.equal(fl, fr,tolerance = 1e-3) && all.equal(fl, yy[2:(length(yy) -
-    1)],tolerance = 1e-3)
-  tf2 <- all.equal(y_l, yy[1],tolerance = 1e-3) && all.equal(y_r, yy[n + 2],tolerance = 1e-3)
-  tf3 <- all.equal(dl, dr,tolerance = 1e-3) && all.equal(ddl, ddr,tolerance = 1e-3) && all.equal(ext_d,
-    d,tolerance = 1e-3)
+  tf1 <- isTRUE(all.equal(fl, fr,tolerance = 1e-3)) && isTRUE(all.equal(fl, yy[2:(length(yy) -
+    1)],tolerance = 1e-3))
+  tf2 <- isTRUE(all.equal(y_l, yy[1],tolerance = 1e-3)) && isTRUE(all.equal(y_r, yy[n + 2],tolerance = 1e-3))
+  tf3 <- isTRUE(all.equal(dl, dr,tolerance = 1e-3)) && isTRUE(all.equal(ddl, ddr,tolerance = 1e-3)) && isTRUE(all.equal(ext_d,
+    d,tolerance = 1e-3))
   is_spline <- tf1 && tf2 && tf3
 
   expect_equal(is_spline, TRUE)
@@ -85,11 +85,11 @@ test_that("cics_explicit works correctly.", {
   ext_d <- c(as.function(deriv(exp_sp$spline_polynomial[[1]]))(uu[1]),
     as.function(deriv(exp_sp$spline_polynomial[[n + 1]]))(uu[length(uu)]))
 
-  tf1 <- all.equal(fl, fr,tolerance = 1e-2) && all.equal(fl, yy[2:(length(yy) -
-    1)],tolerance = 1e-3)
-  tf2 <- all.equal(y_l, yy[1],tolerance = 1e-3) && all.equal(y_r, yy[n + 2],tolerance = 1e-3)
-  tf3 <- all.equal(dl, dr,tolerance = 1e-3) && all.equal(ddl, ddr,tolerance = 1e-3) && all.equal(ext_d,
-    d,tolerance = 1e-3)
+  tf1 <- isTRUE(all.equal(fl, fr,tolerance = 1e-3)) && isTRUE(all.equal(fl, yy[2:(length(yy) -
+    1)],tolerance = 1e-3))
+  tf2 <- isTRUE(all.equal(y_l, yy[1],tolerance = 1e-3)) && isTRUE(all.equal(y_r, yy[n + 2],tolerance = 1e-3))
+  tf3 <- isTRUE(all.equal(dl, dr,tolerance = 1e-3)) && isTRUE(all.equal(ddl, ddr,tolerance = 1e-3)) && isTRUE(all.equal(ext_d,
+    d,tolerance = 1e-3))
   is_spline <- tf1 && tf2 && tf3
 
   expect_equal(is_spline, TRUE)

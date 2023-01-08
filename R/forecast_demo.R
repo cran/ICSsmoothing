@@ -109,7 +109,7 @@ forecast_demo <- function(){
         #if(!is.null(xy$ylab)) ylable <- xy$ylab
         #plot(xx,yy,col="gray",xlab=xlable,ylab=ylable);
 
-        plot(0, pch='',xlim=c(uu[1],u4), ylim=c(-1,1)
+        plot(0, pch='',xlim=c(uu[1],u4), ylim=c(-0.1,0.1)
              ,xlab=xlable,ylab=ylable)
 
         ### a) Plot derivatives of spline components:
