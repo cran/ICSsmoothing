@@ -105,7 +105,7 @@ library(ggplot2)
 Open system terminal in the parent directory of the package and type
 ```bash
 R CMD build ICSsmoothing
-R CMD install ICSsmoothing_1.2.7.tar.gz
+R CMD install ICSsmoothing_1.2.8.tar.gz
 ```
 **OR**
 Open RStudio and install this library using top menu button *Build*->*Install and Restart*.
