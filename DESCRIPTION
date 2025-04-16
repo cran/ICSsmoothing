@@ -1,18 +1,26 @@
 Package: ICSsmoothing
 Type: Package
 Title: Data Smoothing by Interpolating Cubic Splines
-Version: 1.2.8
-Author: Juraj Hudak, Viliam Kacala, Csaba Torok, Lubomir Antoni 
-Maintainer: Lubomir Antoni <lubomir.antoni@upjs.sk>
+Version: 1.2.9
+Encoding: UTF-8
+Authors@R: c(
+     person(given = "Juraj", family = "Hudak", role = "aut"),
+     person(given = "Csaba", family = "Torok", role = "aut"),
+     person(given = "Viliam", family = "Kacala", role = "aut"),
+     person(given = "Lubomir", family = "Antoni", role = c("aut", "cre"), email = "lubomir.antoni@upjs.sk"))
 Description: We construct the explicit form of clamped cubic interpolating spline (both uniform - knots are equidistant and non-uniform - knots are arbitrary). Using this form, we propose a linear regression model suitable for real data smoothing.
 Depends: R (>= 3.5.0), polynom, ggplot2
 License: GPL-2
-Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.3
 Suggests: knitr, rmarkdown, testthat
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2024-01-09 21:31:55 UTC; xy
+Packaged: 2025-04-16 21:54:24 UTC; xy
 Repository: CRAN
-Date/Publication: 2024-01-10 10:33:21 UTC
+Date/Publication: 2025-04-16 22:10:01 UTC
+Author: Juraj Hudak [aut],
+  Csaba Torok [aut],
+  Viliam Kacala [aut],
+  Lubomir Antoni [aut, cre]
+Maintainer: Lubomir Antoni <lubomir.antoni@upjs.sk>

@@ -1,6 +1,6 @@
 ---
 title: "Explicit form of interpolating cubic spline and data smoothing"
-# Authors: "Juraj Hudák, Lubomir Antoni, Csaba Török"
+# Authors: "Juraj Hudák, Csaba Török, Lubomir Antoni"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -8,7 +8,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-The package is the result of research, the findings of which will soon be published in an article with an almost identical title *Explicit forms of interpolating cubic splines and data smoothing*.
+The package is the result of research, the findings of which are published in an article: *Explicit forms of interpolating cubic splines and data smoothing* (Appl. Math. Comput. 500: 129411, 2025).
 
 ## Package Info:
 

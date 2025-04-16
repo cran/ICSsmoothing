@@ -72,7 +72,7 @@ Building from source
 --------------------
 
 ###  Prerequisites
-* [Rtools](https://support.posit.co/hc/en-us/articles/200486498-Package-Development-Prerequisites/)
+* [Rtools]
 * LaTeX
 
 ### Depends on R packages
