@@ -1,7 +1,7 @@
 Package: ICSsmoothing
 Type: Package
 Title: Data Smoothing by Interpolating Cubic Splines
-Version: 1.2.9
+Version: 1.2.10
 Encoding: UTF-8
 Authors@R: c(
      person(given = "Juraj", family = "Hudak", role = "aut"),
@@ -12,13 +12,13 @@ Description: We construct the explicit form of clamped cubic interpolating splin
 Depends: R (>= 3.5.0), polynom, ggplot2
 License: GPL-2
 LazyData: true
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Suggests: knitr, rmarkdown, testthat
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2025-04-16 21:54:24 UTC; xy
+Packaged: 2025-11-26 23:13:28 UTC; xy
 Repository: CRAN
-Date/Publication: 2025-04-16 22:10:01 UTC
+Date/Publication: 2025-11-26 23:30:02 UTC
 Author: Juraj Hudak [aut],
   Csaba Torok [aut],
   Viliam Kacala [aut],
